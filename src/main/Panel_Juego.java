@@ -11,6 +11,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import entity.Player;
+import tile.TileManager;
 
 public class Panel_Juego extends JPanel implements Runnable {
 
@@ -31,7 +32,7 @@ public class Panel_Juego extends JPanel implements Runnable {
 	
 	int FPS = 60;
 	
-	
+	TileManager tileM = new TileManager(this);
 	ControlTeclado keyH  = new ControlTeclado();
 	Thread gameThread;
 	Player player = new Player(this, keyH);
@@ -132,6 +133,8 @@ public class Panel_Juego extends JPanel implements Runnable {
 		Graphics2D g2 = (Graphics2D)g;
 		
 		drawBackground(g);
+		
+		tileM.draw(g2);
 		
 		player.draw(g2);
 		
