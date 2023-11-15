@@ -4,9 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -17,14 +15,15 @@ import entity.Player;
 public class Panel_Juego extends JPanel implements Runnable {
 
 	
+	
 	final int originalTileSize = 128;
-	public final int originalWidthSize = 128;
-	final int scale = 2;
+	public int originalWidthSize = 256;
+	final int scale = 4;
 	
 	public int tileSize = originalTileSize * scale;
 	
 	
-	final int maxScreenCol = 4;
+	final int maxScreenCol = 3;
 	final int maxScreenRow = 2;
 	
 	final int screenWidth = tileSize * maxScreenCol;
@@ -40,7 +39,7 @@ public class Panel_Juego extends JPanel implements Runnable {
 	
 	int playerX = 100;
 	int playerY = 100;
-	int playerSpeed = 5;
+	int playerSpeed = 6;
 	
 	
 	public Panel_Juego() {
@@ -50,8 +49,32 @@ public class Panel_Juego extends JPanel implements Runnable {
 		this.setDoubleBuffered(true);
 		this.addKeyListener(keyH);
 		this.setFocusable(true);
+		
+		
 	
 	}
+	
+	public void drawBackground (Graphics g) {
+		
+		super.paintComponent(g);
+		
+		ImageIcon imagenFondo = new ImageIcon(getClass().getResource("/Fondo/Background_0.png"));
+		g.drawImage(imagenFondo.getImage(),0,0, screenWidth,screenHeight , null);
+		
+		ImageIcon imagenFondo2 = new ImageIcon(getClass().getResource("/Fondo/Background_1.png"));
+		g.drawImage(imagenFondo2.getImage(),0,0, screenWidth,screenHeight , null);
+		
+		ImageIcon imagenFondo3 = new ImageIcon(getClass().getResource("/Fondo/Grass_background_1.png"));
+		g.drawImage(imagenFondo3.getImage(),0,0, screenWidth/2, screenHeight , null);
+		
+		ImageIcon imagenFondo4 = new ImageIcon(getClass().getResource("/Fondo/Grass_background_2.png"));
+		g.drawImage(imagenFondo4.getImage(),screenWidth/2, 0, screenWidth/2,screenHeight , null);
+		 
+		
+		
+	}
+	
+	
 
 	public void startGameThread() {
 		
@@ -94,6 +117,8 @@ public class Panel_Juego extends JPanel implements Runnable {
 		
 	}
 	
+	
+	
 	public void update() {
 		
 		player.update();
@@ -106,19 +131,9 @@ public class Panel_Juego extends JPanel implements Runnable {
 		
 		Graphics2D g2 = (Graphics2D)g;
 		
-		ImageIcon imagenFondo = new ImageIcon(getClass().getResource("/fondo/Background_0.png"));
-		ImageIcon imagenFondo2 = new ImageIcon(getClass().getResource("/fondo/Background_1.png"));
-		ImageIcon imagenFondo3 = new ImageIcon(getClass().getResource("/fondo/Grass_background_1.png"));
-		ImageIcon imagenFondo4 = new ImageIcon(getClass().getResource("/fondo/Grass_background_2.png"));
-		
-		g.drawImage(imagenFondo.getImage(), 0, 0, screenWidth, screenHeight, null);
-		g.drawImage(imagenFondo2.getImage(), 0, 0, screenWidth, screenHeight, null);
-		g.drawImage(imagenFondo3.getImage(), 0, 0, screenWidth/2, screenHeight, null);
-		g.drawImage(imagenFondo4.getImage(), screenWidth/2, 0, screenWidth/2, screenHeight, null);
+		drawBackground(g);
 		
 		player.draw(g2);
-		
-		
 		
 		g2.dispose();
 	}

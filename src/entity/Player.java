@@ -26,9 +26,10 @@ public class Player extends Entity {
 	}
 	public void setDefaultValues () {
 		
+		
 		x = 100;
 		y = 100;
-		speed = 5;
+		speed = 6;
 		direction = "static";
 	}
 	
@@ -52,15 +53,22 @@ public class Player extends Entity {
 			left6 = ImageIO.read(getClass().getResourceAsStream("/player/Izquierda6.png"));
 			left7 = ImageIO.read(getClass().getResourceAsStream("/player/Izquierda7.png"));
 			left8 = ImageIO.read(getClass().getResourceAsStream("/player/Izquierda8.png"));
-			static1 = ImageIO.read(getClass().getResourceAsStream("/player/tile000.png"));
-			static2 = ImageIO.read(getClass().getResourceAsStream("/player/tile001.png"));
-			static3 = ImageIO.read(getClass().getResourceAsStream("/player/tile002.png"));
-			static4 = ImageIO.read(getClass().getResourceAsStream("/player/tile003.png"));
-			static5 = ImageIO.read(getClass().getResourceAsStream("/player/tile004.png"));
-			static6 = ImageIO.read(getClass().getResourceAsStream("/player/tile005.png"));
-			static7 = ImageIO.read(getClass().getResourceAsStream("/player/tile006.png"));
-			static8 = ImageIO.read(getClass().getResourceAsStream("/player/tile007.png"));
-			
+			static1 = ImageIO.read(getClass().getResourceAsStream("/player/static1.png"));
+			static2 = ImageIO.read(getClass().getResourceAsStream("/player/static2.png"));
+			static3 = ImageIO.read(getClass().getResourceAsStream("/player/static3.png"));
+			static4 = ImageIO.read(getClass().getResourceAsStream("/player/static4.png"));
+			static5 = ImageIO.read(getClass().getResourceAsStream("/player/static5.png"));
+			static6 = ImageIO.read(getClass().getResourceAsStream("/player/static6.png"));
+			static7 = ImageIO.read(getClass().getResourceAsStream("/player/static7.png"));
+			static8 = ImageIO.read(getClass().getResourceAsStream("/player/static8.png"));
+			jump1 = ImageIO.read(getClass().getResourceAsStream("/player/jump1.png"));
+			jump2 = ImageIO.read(getClass().getResourceAsStream("/player/jump2.png"));
+			jump3 = ImageIO.read(getClass().getResourceAsStream("/player/jump3.png"));
+			jump4 = ImageIO.read(getClass().getResourceAsStream("/player/jump4.png"));
+			jump5 = ImageIO.read(getClass().getResourceAsStream("/player/jump5.png"));
+			jump6 = ImageIO.read(getClass().getResourceAsStream("/player/jump6.png"));
+			jump7 = ImageIO.read(getClass().getResourceAsStream("/player/jump7.png"));
+			jump8 = ImageIO.read(getClass().getResourceAsStream("/player/jump8.png"));
 			
 			
 		}catch(IOException e) {
@@ -68,17 +76,15 @@ public class Player extends Entity {
 		}
 	}
 	
+	
+	
+	
 	public void update (){
 	
 		if (keyH.upPressed == true || keyH.downPressed == true || 
-				keyH.leftPressed == true || keyH.rigthPressed == true) {
+				keyH.leftPressed == true || keyH.rigthPressed == true || keyH.spaceTyped == true) {
 		
-			if (keyH.upPressed == true) {
-			
-				y -= speed;
-			}
-			else if (keyH.downPressed == true) {
-			
+			if (keyH.downPressed == true) {
 				y += speed;
 			}
 			else if (keyH.leftPressed == true) {
@@ -91,11 +97,19 @@ public class Player extends Entity {
 				direction = "right";
 				x += speed;
 			}
-		
+			else if (keyH.spaceTyped == true) {
+				direction = "jump";
+				
+			}
 			
-		}else {
+					
+				
+		}
+			
+		
+		 else {
 			direction = "static";
-		}	
+		}
 		spriteCounter++;
 		
 		if(spriteCounter > 6) {
@@ -117,9 +131,15 @@ public class Player extends Entity {
 			}else if (spriteNum == 8) {
 				spriteNum = 1;
 			}
-		
+			
+			if (spriteNum >= 8) {
+				keyH.spaceTyped = false;
+			}
 			spriteCounter = 0;
 		}
+		
+		
+	
 	}
 	
 	public void draw (Graphics2D g2) {
@@ -131,6 +151,33 @@ public class Player extends Entity {
 		BufferedImage image = null;
 		
 		switch (direction){
+		
+		case "static":
+			if (spriteNum == 1) {
+				image = static1;
+			}
+			if (spriteNum == 2) {
+				image = static2;
+			}
+			if (spriteNum == 3) {
+				image = static3;
+			}
+			if (spriteNum == 4) {
+				image = static4;
+			}
+			if (spriteNum == 5) {
+				image = static5;
+			}
+			if (spriteNum == 6) {
+				image = static6;
+			}
+			if (spriteNum == 7) {
+				image = static7;
+			}
+			if (spriteNum == 8) {
+				image = static8;
+			}
+			break;
 			
 		case "right":
 			if (spriteNum == 1) {
@@ -185,34 +232,42 @@ public class Player extends Entity {
 			}
 			
 			break;
-		case "static":
-			if (spriteNum == 1) 
-				image = static1;
+		
+		case "jump":
+			if (spriteNum == 1) {
+				image= jump1;
+			}
+		
+			if (spriteNum == 2) {
+				image= jump2;
+			}
+		
+			if (spriteNum ==3) {
+				image= jump3;
+			}
+		
+			if (spriteNum == 4) {
+				image= jump4;
+			}
+		
+			if (spriteNum == 5) {
+				image= jump5;
+			}
+		
+			if (spriteNum == 6) {
+				image= jump6;
+			}
+		
+			if (spriteNum == 7) {
+				image= jump7;
+			}
+		
+			if (spriteNum == 8) {
+				image= jump8;
+			}
 			
-			if (spriteNum == 2) 
-				image = static2;
-			
-			if (spriteNum == 3) 
-				image = static3;
-			
-			if (spriteNum == 4) 
-				image = static4;
-				
-			if (spriteNum == 5) 
-				image = static5;
-			
-			if (spriteNum == 6) 
-				image = static6;
-			
-			if (spriteNum == 7)
-				image = static7;
-			
-			if (spriteNum == 8) 
-				image = static8;
-			
+			break;
 		}
-		
-		
 		
 		g2.drawImage(image, x, y, gp.tileSize, gp.originalWidthSize, null );
 		

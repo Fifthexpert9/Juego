@@ -5,11 +5,17 @@ import java.awt.event.KeyListener;
 
 public class ControlTeclado implements KeyListener{
 	
-	public boolean upPressed, downPressed, leftPressed, rigthPressed;
+	public boolean upPressed, downPressed, leftPressed, rigthPressed, spaceTyped;
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
+		
+		int code = e.getKeyChar();
+		
+		if (code == KeyEvent.VK_SPACE) {
+			spaceTyped = true;
+		}
+		
 		
 	}
 
@@ -18,10 +24,7 @@ public class ControlTeclado implements KeyListener{
 
 		int code = e.getKeyCode();
 		
-		if (code == KeyEvent.VK_W) {
-			
-			upPressed = true;
-		}
+		
 		
 		if (code == KeyEvent.VK_S) {
 			
@@ -67,6 +70,8 @@ public class ControlTeclado implements KeyListener{
 			
 			rigthPressed = false;
 		}
+		
+	
 	}
 
 	
