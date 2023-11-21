@@ -49,7 +49,14 @@ public class TileManager {
 	public void draw(Graphics2D g2) {
 		
 		
-		g2.drawImage(tile[0].image, 0, 0, 100, 60, null);
+		g2.drawImage(tile[0].image, -3, 300 , 100, 40, null);
+		g2.drawImage(tile[0].image, 91, 300 , 100, 40, null);
+		g2.drawImage(tile[0].image, 185, 300 , 100, 40, null);
+		g2.drawImage(tile[0].image, 270, 300 , 100, 40, null);
+		g2.drawImage(tile[0].image, 355, 300 , 100, 40, null);
+		g2.drawImage(tile[0].image, 447, 300 , 100, 40, null);
+		g2.drawImage(tile[0].image, 530, 300 , 100, 40, null);
+		g2.drawImage(tile[0].image, 610, 300 , 70, 40, null);
 	}
 
 }

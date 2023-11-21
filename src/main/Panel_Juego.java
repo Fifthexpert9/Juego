@@ -4,9 +4,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
@@ -17,8 +14,8 @@ public class Panel_Juego extends JPanel implements Runnable {
 
 	
 	
-	final int originalTileSize = 128;
-	public int originalWidthSize = 256;
+	final int originalTileSize = 56;
+	public int originalWidthSize = 116;
 	final int scale = 4;
 	
 	public int tileSize = originalTileSize * scale;
@@ -39,8 +36,8 @@ public class Panel_Juego extends JPanel implements Runnable {
 	
 	
 	int playerX = 100;
-	int playerY = 100;
-	int playerSpeed = 6;
+	int playerY = 200;
+	int playerSpeed = 5;
 	
 	
 	public Panel_Juego() {

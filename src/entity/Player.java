@@ -1,6 +1,5 @@
 package entity;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -26,10 +25,11 @@ public class Player extends Entity {
 	}
 	public void setDefaultValues () {
 		
-		
+		originalY = 200;
+		jumpHeight = 60;
 		x = 100;
-		y = 100;
-		speed = 6;
+		y = 200;
+		speed = 5;
 		direction = "static";
 	}
 	
@@ -81,35 +81,60 @@ public class Player extends Entity {
 	
 	public void update (){
 	
-		if (keyH.upPressed == true || keyH.downPressed == true || 
-				keyH.leftPressed == true || keyH.rigthPressed == true || keyH.spaceTyped == true) {
+		if ( keyH.leftPressed == true || keyH.rigthPressed == true || keyH.spaceTyped == true) {
 		
-			if (keyH.downPressed == true) {
-				y += speed;
-			}
-			else if (keyH.leftPressed == true) {
+			 if (keyH.leftPressed == true) {
 			
 				direction = "left";
 				x -= speed;
-			}
-			else if (keyH.rigthPressed == true) {
+				}
+					 if (keyH.rigthPressed == true) {
 			
-				direction = "right";
-				x += speed;
-			}
-			else if (keyH.spaceTyped == true) {
-				direction = "jump";
-				
-			}
-			
-					
-				
-		}
-			
+						direction = "right";
+						x += speed;
+					}
+						 if (keyH.spaceTyped && direction.equals("static")) {
+				 
+							direction = "jump";
+							spriteNum = 1;
+						}
 		
-		 else {
+		}
+		 else{
 			direction = "static";
 		}
+		
+		
+		if (direction.equals("jump")) {
+	      
+	        if (y > originalY - jumpHeight) {
+	            y -= speed; 
+	        } else {
+	            direction = "falling";
+	        }
+
+	        spriteCounter++;
+	        if (spriteCounter > 6) {
+	            spriteNum = (spriteNum % 8) + 1; 
+	            spriteCounter = 0;
+	        }
+
+	       
+	        if (spriteNum == 8) {
+	            direction = "falling";
+	        }
+	    }
+
+	    if (direction.equals("falling")) {
+	        if (y < originalY) {
+	            y += speed; 
+	        } else {
+	            
+	            direction = "static";
+	            keyH.spaceTyped = false;
+	        }
+	    } 
+		
 		spriteCounter++;
 		
 		if(spriteCounter > 6) {
@@ -138,9 +163,9 @@ public class Player extends Entity {
 			spriteCounter = 0;
 		}
 		
-		
+	}	
 	
-	}
+
 	
 	public void draw (Graphics2D g2) {
 		
@@ -234,6 +259,9 @@ public class Player extends Entity {
 			break;
 		
 		case "jump":
+			
+		
+		case "falling":
 			if (spriteNum == 1) {
 				image= jump1;
 			}
@@ -249,7 +277,6 @@ public class Player extends Entity {
 			if (spriteNum == 4) {
 				image= jump4;
 			}
-		
 			if (spriteNum == 5) {
 				image= jump5;
 			}
@@ -265,27 +292,12 @@ public class Player extends Entity {
 			if (spriteNum == 8) {
 				image= jump8;
 			}
-			
 			break;
+			
 		}
 		
 		g2.drawImage(image, x, y, gp.tileSize, gp.originalWidthSize, null );
 		
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
