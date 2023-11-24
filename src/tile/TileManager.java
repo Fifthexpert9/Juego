@@ -48,15 +48,20 @@ public class TileManager {
 	
 	public void draw(Graphics2D g2) {
 		
-		
-		g2.drawImage(tile[0].image, -3, 300 , 100, 40, null);
-		g2.drawImage(tile[0].image, 91, 300 , 100, 40, null);
-		g2.drawImage(tile[0].image, 185, 300 , 100, 40, null);
-		g2.drawImage(tile[0].image, 270, 300 , 100, 40, null);
-		g2.drawImage(tile[0].image, 355, 300 , 100, 40, null);
-		g2.drawImage(tile[0].image, 447, 300 , 100, 40, null);
-		g2.drawImage(tile[0].image, 530, 300 , 100, 40, null);
-		g2.drawImage(tile[0].image, 610, 300 , 70, 40, null);
+		g2.drawImage(tile[3].image, 0, 250 , 70, 200, null);
+		g2.drawImage(tile[3].image, 70, 250 , 70, 200, null);
+		g2.drawImage(tile[3].image, 210, 250 , 70, 200, null);
+		g2.drawImage(tile[3].image, 350, 250 , 70, 200, null);
+		g2.drawImage(tile[3].image, 420, 250 , 70, 200, null);
+		g2.drawImage(tile[3].image, 560, 250 , 70, 200, null);
+		g2.drawImage(tile[0].image, -3, 350 , 100, 40, null);
+		g2.drawImage(tile[0].image, 91, 350 , 100, 40, null);
+		g2.drawImage(tile[0].image, 185, 350 , 100, 40, null);
+		g2.drawImage(tile[0].image, 270, 350 , 100, 40, null);
+		g2.drawImage(tile[0].image, 355, 350 , 100, 40, null);
+		g2.drawImage(tile[0].image, 447, 350 , 100, 40, null);
+		g2.drawImage(tile[0].image, 530, 350 , 100, 40, null);
+		g2.drawImage(tile[0].image, 610, 350 , 70, 40, null);
 	}
 
 }

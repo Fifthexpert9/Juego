@@ -25,10 +25,10 @@ public class Player extends Entity {
 	}
 	public void setDefaultValues () {
 		
-		originalY = 200;
+		originalY = 250;
 		jumpHeight = 60;
 		x = 100;
-		y = 200;
+		y = 250;
 		speed = 5;
 		direction = "static";
 		attack = false;
@@ -92,20 +92,22 @@ public class Player extends Entity {
 		if ( keyH.leftPressed == true || keyH.rigthPressed == true || keyH.spaceTyped == true || keyH.kPressed == true) {
 		
 			 if (keyH.leftPressed == true ) {
-			
+				keyH.spaceTyped = false;
+				keyH.kPressed = false; 
 				direction = "left";
 				x -= speed;
 				}
 					 if (keyH.rigthPressed == true) {
-			
+						keyH.spaceTyped = false;
+						keyH.kPressed = false; 
 						direction = "right";
 						x += speed;
 					}
 						 if (keyH.spaceTyped && direction.equals("static")) {
-				 
 							direction = "jump";
 							spriteNum = 1;
-						} if (keyH.kPressed == true && direction.equals("static")) {
+						
+						 } if (keyH.kPressed == true && direction.equals("static")) {
 							
 								attack = true;
 								direction = "animation";	
@@ -153,7 +155,7 @@ public class Player extends Entity {
 		}
 
 		if (direction.equals("jump")) {
-	      
+	     
 	        if (y > originalY - jumpHeight) {
 	            y -= speed; 
 	        } else {
@@ -173,7 +175,9 @@ public class Player extends Entity {
 	    }
 
 	    if (direction.equals("falling")) {
-	        if (y < originalY) {
+	    
+	    	if (y < originalY) {
+	  	      	
 	            y += speed; 
 	        } else {
 	            
@@ -418,4 +422,18 @@ public class Player extends Entity {
 		
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

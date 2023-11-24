@@ -36,7 +36,7 @@ public class Panel_Juego extends JPanel implements Runnable {
 	
 	
 	int playerX = 100;
-	int playerY = 200;
+	int playerY = 250;
 	int playerSpeed = 5;
 	
 	
