@@ -31,6 +31,7 @@ public class Player extends Entity {
 		y = 200;
 		speed = 5;
 		direction = "static";
+		attack = false;
 	}
 	
 	public void getPlayerImage() {
@@ -69,7 +70,14 @@ public class Player extends Entity {
 			jump6 = ImageIO.read(getClass().getResourceAsStream("/player/jump6.png"));
 			jump7 = ImageIO.read(getClass().getResourceAsStream("/player/jump7.png"));
 			jump8 = ImageIO.read(getClass().getResourceAsStream("/player/jump8.png"));
-			
+			attack1 = ImageIO.read(getClass().getResourceAsStream("/player/tile002.png"));
+			attack2 = ImageIO.read(getClass().getResourceAsStream("/player/tile003.png"));
+			attack3 = ImageIO.read(getClass().getResourceAsStream("/player/tile004.png"));
+			attack4 = ImageIO.read(getClass().getResourceAsStream("/player/tile005.png"));
+			attack5 = ImageIO.read(getClass().getResourceAsStream("/player/tile006.png"));
+			attack6 = ImageIO.read(getClass().getResourceAsStream("/player/tile007.png"));
+			attack7 = ImageIO.read(getClass().getResourceAsStream("/player/tile008.png"));
+			attack8 = ImageIO.read(getClass().getResourceAsStream("/player/tile009.png"));
 			
 		}catch(IOException e) {
 			e.printStackTrace();
@@ -81,9 +89,9 @@ public class Player extends Entity {
 	
 	public void update (){
 	
-		if ( keyH.leftPressed == true || keyH.rigthPressed == true || keyH.spaceTyped == true) {
+		if ( keyH.leftPressed == true || keyH.rigthPressed == true || keyH.spaceTyped == true || keyH.kPressed == true) {
 		
-			 if (keyH.leftPressed == true) {
+			 if (keyH.leftPressed == true ) {
 			
 				direction = "left";
 				x -= speed;
@@ -97,7 +105,13 @@ public class Player extends Entity {
 				 
 							direction = "jump";
 							spriteNum = 1;
-						}
+						} if (keyH.kPressed == true && direction.equals("static")) {
+							
+								attack = true;
+								direction = "animation";	
+								spriteNum = 1;
+							}
+						 	
 		
 		}
 		 else{
@@ -105,6 +119,39 @@ public class Player extends Entity {
 		}
 		
 		
+		if (attack == true) {
+			
+			spriteCounter++;
+			
+			if(spriteCounter > 6) {
+				
+				if (spriteNum == 1) {
+					spriteNum = 2;
+				}
+				else if(spriteNum == 2) {
+					spriteNum = 3;
+				}else if (spriteNum == 3) {
+					spriteNum = 4;
+				}else if (spriteNum == 4) {
+					spriteNum = 5;
+				}else if (spriteNum == 5) {
+					spriteNum = 6;
+				}else if (spriteNum == 6) {
+					spriteNum = 7;
+				}else if (spriteNum == 7) {
+					spriteNum = 8;
+				}
+				
+				if (spriteNum == 8) {
+					keyH.kPressed = false;
+					attack = false;
+				}
+				
+				spriteCounter = 0;
+				
+			}
+		}
+
 		if (direction.equals("jump")) {
 	      
 	        if (y > originalY - jumpHeight) {
@@ -133,7 +180,10 @@ public class Player extends Entity {
 	            direction = "static";
 	            keyH.spaceTyped = false;
 	        }
-	    } 
+	    }
+	   
+	    
+	   
 		
 		spriteCounter++;
 		
@@ -163,7 +213,8 @@ public class Player extends Entity {
 			spriteCounter = 0;
 		}
 		
-	}	
+  }
+
 	
 
 	
@@ -230,6 +281,7 @@ public class Player extends Entity {
 				image = right8;
 			}
 			break;
+		
 		case "left":
 			if (spriteNum == 1) {
 				image = left2;
@@ -259,6 +311,38 @@ public class Player extends Entity {
 			break;
 		
 		case "jump":
+			
+			if (spriteNum == 1) {
+				image= jump1;
+			}
+		
+			if (spriteNum == 2) {
+				image= jump2;
+			}
+		
+			if (spriteNum ==3) {
+				image= jump3;
+			}
+		
+			if (spriteNum == 4) {
+				image= jump4;
+			}
+			if (spriteNum == 5) {
+				image= jump5;
+			}
+		
+			if (spriteNum == 6) {
+				image= jump6;
+			}
+		
+			if (spriteNum == 7) {
+				image= jump7;
+			}
+		
+			if (spriteNum == 8) {
+				image= jump8;
+			}
+			break;
 			
 		
 		case "falling":
@@ -291,6 +375,40 @@ public class Player extends Entity {
 		
 			if (spriteNum == 8) {
 				image= jump8;
+			}
+			break;
+		
+		case "animation":
+			
+			if (spriteNum == 1) {
+				image= attack1;
+			}
+		
+			if (spriteNum == 2) {
+				image= attack2;
+			}
+		
+			if (spriteNum ==3) {
+				image= attack3;
+			}
+		
+			if (spriteNum == 4) {
+				image= attack4;
+			}
+			if (spriteNum == 5) {
+				image= attack5;
+			}
+		
+			if (spriteNum == 6) {
+				image= attack6;
+			}
+		
+			if (spriteNum == 7) {
+				image= attack7;
+			}
+		
+			if (spriteNum == 8) {
+				image= attack8;
 			}
 			break;
 			

@@ -5,7 +5,7 @@ import java.awt.event.KeyListener;
 
 public class ControlTeclado implements KeyListener{
 	
-	public boolean upPressed, downPressed, leftPressed, rigthPressed, spaceTyped;
+	public boolean upPressed, downPressed, leftPressed, rigthPressed, spaceTyped, kTyped, kPressed;
 
 	@Override
 	public void keyTyped(KeyEvent e) {
@@ -17,6 +17,7 @@ public class ControlTeclado implements KeyListener{
 		}
 		
 		
+		
 	}
 
 	@Override
@@ -24,7 +25,9 @@ public class ControlTeclado implements KeyListener{
 
 		int code = e.getKeyCode();
 		
-		
+		if(code == KeyEvent.VK_K) {
+			kPressed = true;
+		}
 		
 		if (code == KeyEvent.VK_S) {
 			
@@ -46,6 +49,8 @@ public class ControlTeclado implements KeyListener{
 	public void keyReleased(KeyEvent e) {
 		
 		int code = e.getKeyCode();
+		
+		
 		
 		if (code == KeyEvent.VK_W) {
 			
