@@ -7,23 +7,24 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import main.ControlTeclado;
-import main.Panel_Juego;
+import main.PanelJuego;
 
-public class Player extends Entity {
+public class Player extends Mob {
 
-	
-	Panel_Juego gp;
 	ControlTeclado keyH;
 	
-	public Player (Panel_Juego gp, ControlTeclado keyH) {
+	public Player (PanelJuego gp, ControlTeclado keyH) {
+		super(gp);
 		
-		this.gp = gp;
 		this.keyH = keyH;
 		
 		setDefaultValues();
 		getPlayerImage();
 	}
 	public void setDefaultValues () {
+		
+		maxHealth = 10;
+		health = maxHealth;
 		
 		originalY = 250;
 		jumpHeight = 60;
@@ -89,31 +90,29 @@ public class Player extends Entity {
 	
 	public void update (){
 	
-		if ( keyH.leftPressed == true || keyH.rigthPressed == true || keyH.spaceTyped == true || keyH.kPressed == true) {
-		
+		if ( keyH.leftPressed == true || keyH.rigthPressed == true || keyH.spaceTyped == true || keyH.kPressed == true) {		
 			 if (keyH.leftPressed == true ) {
 				keyH.spaceTyped = false;
 				keyH.kPressed = false; 
 				direction = "left";
 				x -= speed;
-				}
-					 if (keyH.rigthPressed == true) {
-						keyH.spaceTyped = false;
-						keyH.kPressed = false; 
-						direction = "right";
-						x += speed;
-					}
-						 if (keyH.spaceTyped && direction.equals("static")) {
-							direction = "jump";
-							spriteNum = 1;
-						
-						 } if (keyH.kPressed == true && direction.equals("static")) {
-							
-								attack = true;
-								direction = "animation";	
-								spriteNum = 1;
-							}
-						 	
+			}
+			 else if (keyH.rigthPressed == true) {
+				keyH.spaceTyped = false;
+				keyH.kPressed = false; 
+				direction = "right";
+				x += speed;
+			}
+				 if (keyH.spaceTyped && direction.equals("static")) {
+					direction = "jump";
+					spriteNum = 1;
+				
+				 }
+				 if (keyH.kPressed == true && direction.equals("static")) {
+					attack = true;
+					direction = "animation";	
+					spriteNum = 1;
+				}	 	
 		
 		}
 		 else{
@@ -191,7 +190,7 @@ public class Player extends Entity {
 		
 		spriteCounter++;
 		
-		if(spriteCounter > 6) {
+		if(spriteCounter > 8) {
 			if (spriteNum == 1) {
 				spriteNum = 2;
 			}
@@ -215,11 +214,9 @@ public class Player extends Entity {
 				keyH.spaceTyped = false;
 			}
 			spriteCounter = 0;
-		}
+		}				
 		
   }
-
-	
 
 	
 	public void draw (Graphics2D g2) {
@@ -419,7 +416,6 @@ public class Player extends Entity {
 		}
 		
 		g2.drawImage(image, x, y, gp.tileSize, gp.originalWidthSize, null );
-		
 	}
 }
 

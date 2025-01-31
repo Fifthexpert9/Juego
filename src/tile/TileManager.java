@@ -5,14 +5,14 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import main.Panel_Juego;
+import main.PanelJuego;
 
 public class TileManager {
 	
-	Panel_Juego gp;
+	PanelJuego gp;
 	Tile[] tile;
 	
-	public TileManager(Panel_Juego gp) {
+	public TileManager(PanelJuego gp) {
 		
 		this.gp = gp;
 		

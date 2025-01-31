@@ -4,13 +4,18 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
+import entity.Mob;
 import entity.Player;
+import entity.Skeleton;
 import tile.TileManager;
 
-public class Panel_Juego extends JPanel implements Runnable {
+public class PanelJuego extends JPanel implements Runnable {
 
 	
 	
@@ -32,7 +37,8 @@ public class Panel_Juego extends JPanel implements Runnable {
 	TileManager tileM = new TileManager(this);
 	ControlTeclado keyH  = new ControlTeclado();
 	Thread gameThread;
-	Player player = new Player(this, keyH);
+	public Player player = new Player(this, keyH);
+	public List<Mob> mobs = new ArrayList<>();
 	
 	
 	int playerX = 100;
@@ -40,7 +46,7 @@ public class Panel_Juego extends JPanel implements Runnable {
 	int playerSpeed = 5;
 	
 	
-	public Panel_Juego() {
+	public PanelJuego() {
 		
 		this.setPreferredSize(new Dimension(screenWidth, screenHeight));
 		this.setBackground(Color.DARK_GRAY);
@@ -48,8 +54,12 @@ public class Panel_Juego extends JPanel implements Runnable {
 		this.addKeyListener(keyH);
 		this.setFocusable(true);
 		
-		
+		init();
+	}
 	
+	public void init() {
+		mobs.add(player);
+		mobs.add(new Skeleton(this));
 	}
 	
 	public void drawBackground (Graphics g) {
@@ -68,10 +78,7 @@ public class Panel_Juego extends JPanel implements Runnable {
 		ImageIcon imagenFondo4 = new ImageIcon(getClass().getResource("/Fondo/Grass_background_2.png"));
 		g.drawImage(imagenFondo4.getImage(),screenWidth/2, 0, screenWidth/2,screenHeight , null);
 		 
-		
-		
 	}
-	
 	
 
 	public void startGameThread() {
@@ -119,7 +126,9 @@ public class Panel_Juego extends JPanel implements Runnable {
 	
 	public void update() {
 		
-		player.update();
+		for (Mob mob : mobs) {
+			mob.update();
+		}
 	
 	}
 	
@@ -133,7 +142,9 @@ public class Panel_Juego extends JPanel implements Runnable {
 		
 		tileM.draw(g2);
 		
-		player.draw(g2);
+		for (Mob mob : mobs) {
+			mob.draw(g2);
+		}
 		
 		g2.dispose();
 	}

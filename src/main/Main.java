@@ -11,7 +11,7 @@ public class Main {
 		window.setResizable(false);
 		window.setTitle("Aventura 2D");
 		
-		Panel_Juego panelJuego = new Panel_Juego();
+		PanelJuego panelJuego = new PanelJuego();
 		window.add(panelJuego);
 		
 		window.pack();
